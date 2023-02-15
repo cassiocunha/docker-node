@@ -17,8 +17,6 @@ services:
     tty: true
     working_dir: /usr/src/app
     command: sh -c "npm init -y && npm install express && npm install mysql && node index.js"
-    expose:
-      - "3000"
     volumes:
       - ./node:/usr/src/app
     networks:
