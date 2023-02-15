@@ -18,8 +18,8 @@ services:
     working_dir: /usr/src/app
     command: sh -c "npm init -y && npm install express && npm install mysql && node index.js"
     depends_on:
-      db: 
-        condition: service_healthy
+      - db: 
+          condition: service_healthy
     volumes:
       - ./node:/usr/src/app
     networks:
