@@ -12,11 +12,11 @@ services:
       - node-network
 
   app:
-    image: node:15
+    build: .
     container_name: nodejs
-    tty: true
-    working_dir: /usr/src/app
     command: sh -c "npm init -y && npm install express && npm install mysql && node index.js"
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 30s docker-entrypoint.sh
+    tty: true
     volumes:
       - ./node:/usr/src/app
     networks:
