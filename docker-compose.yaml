@@ -1,14 +1,24 @@
 version: '3'
 
 services:
+
+  web:
+    image: nginx:1.15.0-alpine
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d/
+    networks:
+      - node-network
+
   app:
     image: node:15
     container_name: nodejs
     tty: true
     working_dir: /usr/src/app
     command: sh -c "npm init -y && npm install express && npm install mysql && node index.js"
-    ports:
-      - 3000:3000
+    expose:
+      - "3000"
     volumes:
       - ./node:/usr/src/app
     networks:
