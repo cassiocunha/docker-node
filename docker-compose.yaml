@@ -17,6 +17,9 @@ services:
     tty: true
     working_dir: /usr/src/app
     command: sh -c "npm init -y && npm install express && npm install mysql && node index.js"
+    depends_on:
+      db: 
+        condition: service_healthy
     volumes:
       - ./node:/usr/src/app
     networks:
@@ -34,6 +37,10 @@ services:
     environment:
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
     networks:
       - node-network
 
