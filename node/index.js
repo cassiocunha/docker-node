@@ -23,7 +23,7 @@ con.connect(function (err) {
 });
 
 app.get('/', (req, res) => {
-    res.send(`<h1>Full Cycle Rocks!</h1> <ul> ${peopleList.map(item => `<li>${item.name} </li>`).join('')} </ul>`);
+    res.send(`<h1>Full Cycle Rocks!!</h1> <ul> ${peopleList.map(item => `<li>${item.name} </li>`).join('')} </ul>`);
 });
 
 app.listen(port, () => {
